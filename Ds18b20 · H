@@ -1,0 +1,22 @@
+#ifndef DS18B20_H
+#define DS18B20_H
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#include "stm32f1xx_hal.h"
+
+/* DS18B20 data wire on PA0, with a 4.7k resistor from the data wire to 3.3V */
+#define DS18B20_PORT  GPIOA
+#define DS18B20_PIN   GPIO_PIN_0
+
+void    DS18B20_Init(void);
+uint8_t DS18B20_StartConversion(void);        /* 1 = sensor answered, 0 = no sensor      */
+uint8_t DS18B20_ReadTemp(int16_t *temp_x10);  /* 1 = good reading (tenths of a degree C) */
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif /* DS18B20_H */
